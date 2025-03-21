@@ -1,0 +1,75 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class RPSgame {
+    public static String input;
+
+    public RPSgame() {
+    }
+
+    public static void main(String[] args) {
+        Random rm = new Random();
+        Scanner sc = new Scanner(System.in);
+        String[] choice = new String[]{"rock", "paper", "scissor"};
+        System.out.println("           Rock - Paper - Scissor");
+        System.out.println("There will be 3 rounds.\nIf your score >=2 , You WIN !");
+        System.out.println("Type r(rock) , p(paper) or s(scissor) to play.");
+
+        label91:
+        while(true) {
+            int score = 0;
+
+            for(int i = 0; i < 3; ++i) {
+                System.out.println("             Round - " + (i + 1));
+                String CompMove = choice[rm.nextInt(3)];
+
+                while(true) {
+                    System.out.print("please Type : ");
+                    input = sc.next();
+                    if (input.equals("r") || input.equals("s") || input.equals("p")) {
+                        System.out.println("Vs " + CompMove);
+                        if ((!input.equals("r") || !CompMove.equals("rock")) && (!input.equals("p") || !CompMove.equals("paper")) && (!input.equals("s") || !CompMove.equals("scissor"))) {
+                            if ((!input.equals("p") || !CompMove.equals("rock")) && (!input.equals("s") || !CompMove.equals("paper")) && (!input.equals("r") || !CompMove.equals("scissor"))) {
+                                System.out.println("You loose");
+                            } else {
+                                System.out.println("You Win");
+                                ++score;
+                            }
+                        } else {
+                            System.out.println("Draw");
+                        }
+                        break;
+                    }
+
+                    System.out.println("Invalid input , please enter only 'r' or 'p' or 's'");
+                }
+            }
+
+            System.out.println("Total Score : " + score);
+            if (score >= 2) {
+                System.out.println("Yay, You Won the Game.Congrats");
+            }
+
+            while(true) {
+                System.out.print("Wanna play Again? Type y[YES] and n[NO] : ");
+                char playagain = sc.next().charAt(0);
+                if (playagain == 'y' || playagain == 'n') {
+                    if (playagain != 'y' && playagain != 'Y') {
+                        break label91;
+                    }
+                    break;
+                }
+
+                System.out.println("Invalid input , please enter only 'y' or 'n'");
+            }
+        }
+
+        sc.close();
+        System.out.println("Thnkyou for playing");
+    }
+}
